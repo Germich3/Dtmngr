@@ -31,7 +31,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.Germich3:Dtmngr:<Latest Release>'
+	implementation group: 'com.github.Germich3' name: 'Dtmngr' version: '<!-- Latest Release -->'
 }
 ```
 
