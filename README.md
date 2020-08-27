@@ -21,7 +21,39 @@
 
 ## Install <a name="install"></a>
 
-WIP
+<br>
+
+Gradle:
+```gradle
+allprojects {
+	repositories {
+		mavenCentral()
+		maven { url 'https://jitpack.io' }
+	}
+}
+
+dependencies {
+	implementation 'com.github.Germich3:Dtmngr:<Latest Release>'
+}
+```
+
+<br>
+
+Maven:
+```xml
+<repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+</repositories>
+
+<dependency>
+	<groupId>com.github.Germich3</groupId>
+	<artifactId>Dtmngr</artifactId>
+	<version><!-- Latest Release --></version>
+</dependency>
+```
 
 ## Usage <a name="usage"></a>
 
