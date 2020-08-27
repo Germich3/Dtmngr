@@ -25,14 +25,14 @@ WIP
 
 ## Usage <a name="usage"></a>
 
-Exist different managers that can be uses for your propose, some are completely static such as **ConfigurationManager** or **JsonStorageManager**.
+Exist different managers that can be uses for your propose, some are completely static such as **ConfigurationManager** or **JsonManager**.
 Other such as **H2Manager** needs to be initialized.
 
-<ins>**Example JsonStorageManager:**</ins>
+<ins>**Example JsonManager:**</ins>
 ```Java
-Object obj = JsonStorageManager.loadData(Path, FileName, Class)
+Object obj = JsonManager.load(Path, FileName, Class)
 
-JsonStorageManager.saveData(Path, FileName, Object)
+JsonManager.save(Path, FileName, Object)
 ```
 
 <br>H2Manager can load sql script if the database is new, otherwise it will be ignored.<br>
