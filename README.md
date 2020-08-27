@@ -21,8 +21,6 @@
 
 ## Install <a name="install"></a>
 
-<br>
-
 Gradle:
 ```gradle
 allprojects {
