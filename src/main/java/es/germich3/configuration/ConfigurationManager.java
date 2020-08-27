@@ -18,7 +18,7 @@ public class ConfigurationManager {
 
     private static final JavaPropsMapper PROP_MAPPER = new JavaPropsMapper();
     
-    public static <T extends ConfigurationTemplate> T loadConfiguration(Path path, Class<T> clazz) throws DataStorageException {
+    public static <T extends ConfigurationTemplate> T load(Path path, Class<T> clazz) throws DataStorageException {
         try {
             return PROP_MAPPER.readValue(new File(path.toFile(), Utils.getConfigFileName(clazz)), clazz);
         } catch (Exception e) {
@@ -26,7 +26,7 @@ public class ConfigurationManager {
         }
     }
 
-    public static void saveConfiguration(Path path, ConfigurationTemplate config) throws DataStorageException {
+    public static void save(Path path, ConfigurationTemplate config) throws DataStorageException {
         try {
             MapConfiguration map = new MapConfiguration(PROP_MAPPER.writeValueAsMap(config));
             PropertiesConfiguration properties = new PropertiesConfiguration();

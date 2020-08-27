@@ -20,9 +20,9 @@ public class ExampleTest {
         //FIXME: Some valid dir
         Path path = Paths.get("some dir");
 
-        ConfigurationManager.saveConfiguration(path, new ExampleConfigParent());
+        ConfigurationManager.save(path, new ExampleConfigParent());
 
-        ExampleConfigParent config = ConfigurationManager.loadConfiguration(path, ExampleConfigParent.class);
+        ExampleConfigParent config = ConfigurationManager.load(path, ExampleConfigParent.class);
 
         System.out.println("exampleInt = " + config.exampleInt);
         System.out.println("exampleString = " + config.exampleString);
@@ -115,9 +115,9 @@ public class ExampleTest {
             other.setY(75);
             other.setZ(-800);
             
-            CsvManager.saveWithDefaultDelimiters(path, "germich3", Arrays.asList(home, other));
+            CsvManager.withDefaultSeparators().save(path, "germich3", Arrays.asList(home, other));
             
-            List<ExampleData> result = CsvManager.loadWithDefaultDelimiters(path, "germich3", ExampleData.class);
+            List<ExampleData> result = CsvManager.withDefaultSeparators().load(path, "germich3", ExampleData.class);
         	
             System.out.println(result);
             

@@ -18,13 +18,17 @@ public class CsvManager {
 	private char columnSeparator;
 	private String arrayElementSeparator;
 	
-	public CsvManager(char columnSeparator, String arrayElementSeparator) {
+	private CsvManager(char columnSeparator, String arrayElementSeparator) {
 		this.columnSeparator = columnSeparator;
 		this.arrayElementSeparator = arrayElementSeparator;
 	}
 	
-	private CsvManager() {
-		this(',', ";");
+	public static CsvManager withDefaultSeparators() {
+		return new CsvManager(',', ";");
+	}
+	
+	public static CsvManager withSeparators(char columnSeparator, String arrayElementSeparator) {
+		return new CsvManager(columnSeparator, arrayElementSeparator);
 	}
 	
 	public <T> void save(Path path, String fileName, List<T> list) throws DataStorageException {
@@ -54,14 +58,6 @@ public class CsvManager {
 		catch (Exception e) {
             throw new DataStorageException("Could not serialize", e);
 		}
-	}
-	
-	public static <T> List<T> loadWithDefaultDelimiters(Path path, String fileName, Class<T> clazz) throws DataStorageException {
-		return new CsvManager().load(path, fileName, clazz);
-	}
-	
-	public static <T> void saveWithDefaultDelimiters(Path path, String fileName, List<T> list) throws DataStorageException {
-		new CsvManager().save(path, fileName, list);
 	}
 	
 }
