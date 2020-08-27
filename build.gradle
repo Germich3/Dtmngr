@@ -10,9 +10,9 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.11.2'
-    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-csv', version: '2.11.2'
-    compile group: 'org.apache.commons', name: 'commons-configuration2', version: '2.7'
-    compile group: 'com.h2database', name: 'h2', version: '1.4.200'
-    compile group: 'commons-dbutils', name: 'commons-dbutils', version: '1.7'
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.11.2'
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-csv', version: '2.11.2'
+    implementation group: 'org.apache.commons', name: 'commons-configuration2', version: '2.7'
+    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+    implementation group: 'commons-dbutils', name: 'commons-dbutils', version: '1.7'
 }
