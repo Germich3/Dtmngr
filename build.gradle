@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
 
 group 'es.germich3'
@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-properties:${jackson_dataformat_properties}"
-    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:${jackson_dataformat_csv}"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-properties:${jackson_dataformat}"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:${jackson_dataformat}"
     implementation "org.apache.commons:commons-configuration2:${commons_configuration2}"
     implementation "com.h2database:h2:${h2}"
     implementation "commons-dbutils:commons-dbutils:${commons_dbutils}"
