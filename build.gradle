@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+	           api "com.fasterxml.jackson.core:jackson-annotations:${jackson_dataformat}"
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-properties:${jackson_dataformat}"
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-csv:${jackson_dataformat}"
     implementation "org.apache.commons:commons-configuration2:${commons_configuration2}"
