@@ -23,11 +23,9 @@
 
 Gradle:
 ```gradle
-allprojects {
-	repositories {
-		mavenCentral()
-		maven { url 'https://jitpack.io' }
-	}
+repositories {
+	mavenCentral()
+	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
