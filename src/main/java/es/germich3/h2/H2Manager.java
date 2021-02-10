@@ -3,6 +3,7 @@ package es.germich3.h2;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -26,7 +27,7 @@ public class H2Manager implements Closeable {
 	private Connection connection;
 	private QueryRunner runner;
 	
-	public H2Manager(String path, String fileName, URL resource) throws SQLException {
+	public H2Manager(String path, String fileName, URL resource) throws IOException, SQLException, URISyntaxException {
 		String filePath = path + "\\" + fileName;
 		boolean exists = new File(Utils.addH2Extension(filePath)).exists();
 		this.url = "jdbc:h2:" + filePath + ";TRACE_LEVEL_FILE=0";
@@ -35,33 +36,28 @@ public class H2Manager implements Closeable {
 		initializeIfNeeded(filePath, exists, resource);
 	}
 	
-	public H2Manager(String path, String fileName) throws SQLException {
+	public H2Manager(String path, String fileName) throws IOException, SQLException, URISyntaxException {
 		this(path, fileName, null);
 	}
 	
-	public H2Manager(String path, URL resource) throws SQLException {
+	public H2Manager(String path, URL resource) throws IOException, SQLException, URISyntaxException {
 		this(path, "h2", resource);
 	}
 	
-	public H2Manager(String path) throws SQLException {
+	public H2Manager(String path) throws IOException, SQLException, URISyntaxException {
 		this(path, "h2", null);
 	}
 	
-	private void initializeIfNeeded(String filePath, boolean init, URL resource) throws SQLException {
+	private void initializeIfNeeded(String filePath, boolean init, URL resource) throws IOException, SQLException, URISyntaxException {
 		try {
 			if (!init && resource != null) {
 				loadScriptSQL(resource, false);
 			}
 		}
-		catch (SQLException e) {
-			try {
-				close();
-				Files.delete(Paths.get(Utils.addH2Extension(filePath)));
-				throw e;
-			}
-			catch (IOException ex) {
-				throw e;
-			}			
+		catch (SQLException | URISyntaxException e) {
+			close();
+			Files.delete(Paths.get(RepositoryUtils.addH2Extension(filePath)));
+			throw e;
 		}
 	}
 	
@@ -70,8 +66,8 @@ public class H2Manager implements Closeable {
 		DbUtils.closeQuietly(this.connection);
 	}
 	
-	public void loadScriptSQL(URL resource, boolean continueOnError) throws SQLException {
-		RunScript.execute(this.url, "sa", "", resource.toString(), StandardCharsets.UTF_8, continueOnError);
+	public void loadScriptSQL(URL resource, boolean continueOnError) throws SQLException, URISyntaxException {
+		RunScript.execute(this.url, "sa", "", Paths.get(resource.toURI()).toFile().toString(), StandardCharsets.UTF_8, continueOnError);
 	}
 	
 	public int update(String sql, Object... parameters) throws SQLException {
