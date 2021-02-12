@@ -28,7 +28,7 @@ public class H2Manager implements Closeable {
 	private QueryRunner runner;
 	
 	public H2Manager(String path, String fileName, URL resource) throws IOException, SQLException, URISyntaxException {
-		String filePath = path + "\\" + fileName;
+		String filePath = Paths.get(path, fileName).toString();
 		boolean exists = new File(Utils.addH2Extension(filePath)).exists();
 		this.url = "jdbc:h2:" + filePath + ";TRACE_LEVEL_FILE=0";
 		this.connection = DriverManager.getConnection(this.url, "sa", "");
